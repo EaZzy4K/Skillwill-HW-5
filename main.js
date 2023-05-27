@@ -24,4 +24,20 @@ divEl.append(h2, aTag)
 document.body.append(divEl)
 
 // #3
-const quest1 = document.create
+const questions = [
+    {
+        question:'What does 10*2 equal to?',
+        options: ['30', '20', '45'],
+        correctAnswer: '20'
+    }
+    {
+        question:'What does 70+30 equal to?',
+        options: ['80', '15', '100'],
+        correctAnswer: '100'
+    }
+    {
+        question:'What does (400/20)+30 equal to?',
+        options: ['10', '32', '50'],
+        correctAnswer: '50'
+    }
+]
