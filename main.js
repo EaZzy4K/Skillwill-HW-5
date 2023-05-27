@@ -26,61 +26,70 @@ document.body.append(divEl)
 // #3
 const questions = [
     {
-        question:'What does 10*2 equal to?',
-        options: ['30', '20', '45'],
-        correctAnswer: '20'
-    }
+      question: 'What does 10*2 equal to?',
+      options: ['30', '20', '45'],
+      correctAnswer: '20'
+    },
     {
-        question:'What does 70+30 equal to?',
-        options: ['80', '15', '100'],
-        correctAnswer: '100'
-    }
+      question: 'What does 70+30 equal to?',
+      options: ['80', '15', '100'],
+      correctAnswer: '100'
+    },
     {
-        question:'What does (400/20)+30 equal to?',
-        options: ['10', '32', '50'],
-        correctAnswer: '50'
+      question: 'What does (400/20)+30 equal to?',
+      options: ['10', '32', '50'],
+      correctAnswer: '50'
     }
-]
- let currentQuestion = 0;
+  ];
+  
+  let currentQuestion = 0;
   let selectedChoice = null;
-
+  
   function displayQuestion() {
     const questionElement = document.getElementById("question");
     const choicesElement = document.getElementById("choices");
     const submitBtn = document.getElementById("submitBtn");
     const nextBtn = document.getElementById("nextBtn");
     const resultElement = document.getElementById("result");
-
+  
     questionElement.textContent = questions[currentQuestion].question;
     choicesElement.innerHTML = "";
-
-    questions[currentQuestion].choices.forEach(function (choice, index) {
+  
+    questions[currentQuestion].options.forEach(function (choice) {
       const input = document.createElement("input");
       input.type = "radio";
       input.className = "radio";
       input.name = "choice";
       input.value = choice;
       choicesElement.append(input);
-
+  
       const label = document.createElement("label");
       label.textContent = choice;
       choicesElement.append(label);
-
+  
       choicesElement.append(document.createElement("br"));
-
+  
       input.addEventListener("click", function() {
         selectedChoice = input;
       });
     });
+  
+    submitBtn.style.backgroundColor = "";
+    nextBtn.disabled = true;
     resultElement.textContent = "";
   }
-
+  
   function checkAnswer() {
     const submitBtn = document.getElementById("submitBtn");
     const nextBtn = document.getElementById("nextBtn");
     const resultElement = document.getElementById("result");
     const correctAnswer = questions[currentQuestion].correctAnswer;
-
+  
+    if (!selectedChoice) {
+      resultElement.textContent = "Please select an answer.";
+      return;
+    }
+  
     if (selectedChoice.value === correctAnswer) {
       submitBtn.style.backgroundColor = "green";
       resultElement.textContent = "Correct!";
@@ -88,13 +97,15 @@ const questions = [
       submitBtn.style.backgroundColor = "red";
       resultElement.textContent = "Incorrect!";
     }
+  
+    nextBtn.disabled = false;
   }
-
+  
   function nextQuestion() {
     currentQuestion++;
     const nextBtn = document.getElementById("nextBtn");
     const submitBtn = document.getElementById("submitBtn");
-
+  
     if (currentQuestion < questions.length) {
       displayQuestion();
       selectedChoice = null;
@@ -103,4 +114,5 @@ const questions = [
       document.getElementById("choices").innerHTML = "";
     }
   }
+  
   displayQuestion();
