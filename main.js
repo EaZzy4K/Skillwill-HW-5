@@ -23,7 +23,7 @@ aTag.append(aText)
 divEl.append(h2, aTag)
 document.body.append(divEl)
 
-// #3
+// #3 (Tutor needed)
 const questions = [
     {
       question: 'What does 10*2 equal to?',
