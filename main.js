@@ -110,5 +110,4 @@ const questions = [
       submitBtn.disabled = true;
     }
   }
-
   displayQuestion();
