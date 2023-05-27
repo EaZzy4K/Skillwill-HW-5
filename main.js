@@ -60,17 +60,16 @@ const questions = [
       input.className = "radio";
       input.name = "choice";
       input.value = choice;
-      choicesElement.appendChild(input);
+      choicesElement.append(input);
 
       const label = document.createElement("label");
       label.textContent = choice;
-      choicesElement.appendChild(label);
+      choicesElement.append(label);
 
-      choicesElement.appendChild(document.createElement("br"));
+      choicesElement.append(document.createElement("br"));
 
       input.addEventListener("click", function() {
         selectedChoice = input;
-        submitBtn.disabled = false;
       });
     });
     resultElement.textContent = "";
@@ -89,8 +88,6 @@ const questions = [
       submitBtn.style.backgroundColor = "red";
       resultElement.textContent = "Incorrect!";
     }
-
-    nextBtn.disabled = false;
   }
 
   function nextQuestion() {
@@ -99,15 +96,11 @@ const questions = [
     const submitBtn = document.getElementById("submitBtn");
 
     if (currentQuestion < questions.length) {
-      nextBtn.disabled = true;
-      submitBtn.disabled = false;
       displayQuestion();
       selectedChoice = null;
     } else {
       document.getElementById("question").textContent = "Quiz completed!";
       document.getElementById("choices").innerHTML = "";
-      nextBtn.disabled = true;
-      submitBtn.disabled = true;
     }
   }
   displayQuestion();
